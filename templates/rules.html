@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block head%}
+<title>Election Voting Instructions</title>
+    <style>
+        /* Container */
+        .container {
+            position: relative;
+            width: 1440px;
+            height: 1024px;
+            background: #FFFFFF;
+        }
+
+        /* Instructions Box */
+        .instructions-box {
+            position: absolute;
+            width: 10000px;
+            height: 6360px;
+            left: 229px;
+            top: 146px;
+        }
+
+        /* Instructions Text */
+        .instructions-text {
+            position: absolute;
+            width: 960px;
+            height: auto; /* Allow height to adjust based on content */
+            left: 20px;
+            top: 100px;
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 30px;
+            color: #000000;
+            overflow-y: auto; /* Add scrollbar if text overflows */
+        }
+
+        /* Election Commission Text */
+        .election-commission {
+            position: absolute;
+            width: 809px;
+            height: 30px;
+            left: 229px;
+            top: 146px;
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 30px;
+            color: #000000;
+        }
+
+        /* Rectangle 30 */
+        .rectangle-30 {
+            box-sizing: border-box;
+            position: absolute;
+            width: 1000px;
+            height: 500px;
+            left: 233px;
+            top: 187px;
+            border: 3px solid #015FC7;
+        }
+
+        /* Rectangle 31 */
+        .rectangle-31 {
+            position: absolute;
+            width: 23px;
+            height: 21px;
+            left: 239px;
+            top: 758px;
+            background: #C4C4C4;
+        }
+
+        /* I understand text */
+        .understand-text {
+            position: absolute;
+            width: 379px;
+            height: 29px;
+            left: 277px;
+            top: 753px;
+            font-family: 'DM Serif Display', serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 29px;
+            color: #000000;
+        }
+
+        /* Rectangle 32 */
+        .rectangle-32 {
+            position: absolute;
+            width: 148px;
+            height: 40px;
+            left: 1064px;
+            top: 809px;
+            background: #015FC7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Rectangle 33 */
+        .rectangle-33 {
+            position: absolute;
+            width: 148px;
+            height: 40px;
+            left: 890px;
+            top: 809px;
+            background: #015FC7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Proceed Button */
+        .proceed-button {
+            width: 91px;
+            height: 30px;
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 30px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 30px;
+            background-color: #015FC7;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Cancel Button */
+        .cancel-button {
+            width: 75px;
+            height: 30px;
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 30px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 30px;
+            background-color: #015FC7;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block body%}
+<div class="container">
+    <!-- Election Commission Text -->
+    <div class="election-commission">This election is being conducted by the election commission of India.</div>
+
+    <!-- Rectangle 30 -->
+    <div class="rectangle-30"></div>
+
+    <!-- Instructions Box -->
+    <div class="instructions-box">
+        <!-- Instructions Text -->
+        <div class="instructions-text">
+            You, as being a member of the constituency under the constituencies of Uttar Pradesh State Election, are allowed to vote. Please take the following steps in order to cast a valid vote. You are requested to cast vote on your own decision and not by being pressured or terrorized by someone. If someone threatens you for making a voting decision please contact the given helpline numbers.<br><br>
+            Steps - Stay in the frame of your camera alone and with sufficient lighting for the entire duration. Have Security Keys with you as you would require them to proceed. You are allowed to make only one vote per election. You are allowed to choose only one candidate per election. Candidates' information is available on the page. Make sure that you are selecting your wanted candidate by confirming the name and symbol on the screen. After selecting the candidates, make sure to submit the vote. Results will be announced after 5 days of the election being completed. You can verify your vote after the election results are announced.
+        </div>
+    </div>
+
+    <!-- Rectangle 31 -->
+    <div class="rectangle-31"></div>
+
+    <!-- I Understand Text -->
+    <div class="understand-text">I understand and will follow the above steps.</div>
+
+    <!-- Proceed Button -->
+    <div class="rectangle-32">
+        <button class="proceed-button" onclick="window.location.href='{{ url_for('vote') }}'">Proceed</button>
+    </div>
+
+    <!-- Cancel Button -->
+    <div class="rectangle-33">
+        <button class="cancel-button" onclick="window.location.href='{{ url_for('login') }}'">Cancel</button>
+    </div>
+</div>
+{% endblock %}

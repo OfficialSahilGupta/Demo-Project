@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Personal Information</title>
+<style>
+    /* General Styles */
+    body {
+        font-family: 'DM Serif Display', serif;
+        background: #001124;
+        color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        align-items: center; /* Center content horizontally */
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: flex-end; /* Align items to the right */
+        align-items: center;
+        background: #001124;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: #FFFFFF;
+        font-size: 20px; /* Reduced font size */
+        text-decoration: none;
+        margin: 0 15px; /* Adjusted margin */
+    }
+
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center; /* Center container horizontally */
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 80px 20px 20px; /* Adjust padding for fixed navbar */
+        width: 100%;
+        max-width: 1200px; /* Restrict container width */
+    }
+
+    .profile-container {
+        display: flex;
+        align-items: flex-start; /* Align items at the top */
+        gap: 20px; /* Space between photo and info */
+        width: 100%;
+        max-width: 1200px; /* Restrict container width */
+    }
+
+    #profilePic {
+        width: 285px;
+        height: 275.99px;
+        border-radius: 50%;
+        border: 5px solid #015FC7;
+        overflow: hidden; /* Ensure the image fits within the circle */
+    }
+
+    #profilePic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    }
+
+    .info-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Space between form fields */
+        font-size: larger;
+    }
+
+    h2 {
+        font-size: 30px;
+        color: #FFFFFF;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    label {
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+
+    input[type="text"], input[type="date"], textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+        color: #000000; /* Change text color to black */
+    }
+
+    textarea {
+        resize: vertical; /* Allow vertical resizing only */
+        height: 100px; /* Set a default height */
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .footer a {
+        color: #FFFFFF;
+        font-size: 20px;
+        text-decoration: none;
+        margin-right: 20px;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    #changeProfilePic {
+        background-color: #015FC7;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-family: 'DM Serif Display', serif;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+        width: 282px;
+        height: 49px;
+    }
+
+    #editProfileButton {
+        background-color: #015FC7;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-family: 'DM Serif Display', serif;
+        font-size: 20px;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+        width: 140px;
+        height: 40px;
+    }
+
+    .profile-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        top: 20px; /* Adjusted to ensure proper positioning */
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="navbar">
+    <a href="{{ url_for('election') }}">Elections</a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Contact</a>
+</div>
+
+<!-- Container -->
+<div class="container">
+    <!-- User Photo and Info -->
+    <div class="profile-container">
+        <!-- Profile Picture -->
+        <div id="profilePic">
+            {% if photo %}
+                <img src="{{ url_for('static', filename=photo) }}" alt="User Photo">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/default_user.png') }}" alt="User Photo">
+            {% endif %}
+        </div>
+        <div class="profile-actions">
+            <label for="photo">Upload New Photo:</label>
+            <input type="file" id="photo" name="photo">
+            <button id="changeProfilePic">Change Photo</button>
+            
+
+        </div>
+    
+        <div class="info-container">
+            <h2>Personal Information</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ name }}" disabled>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" value="{{ dob }}" disabled>
+                </div>
+
+                <!-- Parent's Name -->
+                <div class="form-group">
+                    <label for="parent_name">Father's/Mother's Name:</label>
+                    <input type="text" id="parent_name" name="parent_name" value="{{ parent_name }}" disabled>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ email }}" disabled>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="tel" id="mobile" name="mobile" value="{{ mobile }}" disabled>
+                </div>
+
+                <!-- Aadhar Number -->
+                <div class="form-group">
+                    <label for="aadhar">Aadhar Number:</label>
+                    <input type="text" id="aadhar" name="aadhar" value="{{ aadhar }}" disabled>
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" disabled>{{ address }}</textarea>
+                </div>
+
+                <!-- Photo Upload -->
+                
+                <!-- Submit Button -->
+                <button type="submit">Update Information</button>
+            </form>
+        </div>
+
+        <!-- Profile Actions -->
+        
+    </div>
+</div>
+
+{% endblock %}

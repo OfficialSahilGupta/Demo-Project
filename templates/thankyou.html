@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block head%}
+<title>Thank You</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #001124;
+            color: #FFFFFF;
+            font-family: 'Tienne', sans-serif;
+            text-align: center;
+        }
+        .thank-you-container {
+            background-color: #FFFFFF;
+            color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+{% endblock %}
+
+{% block body%}
+<div class="thank-you-container">
+    <h1>Thank You for Your Vote!</h1>
+    <p>Your vote has been successfully submitted. We appreciate your participation in the election.</p>
+    <a href={{url_for('login')}} class="exit-button">Exit</a>
+</div>
+{% endblock %}

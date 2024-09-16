@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block head%}
+<title>Voting System</title>
+    <style>
+        /* Reset margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Serif Display', serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('your-image-path.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* Header content container */
+        .header-content {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        /* Title text */
+        .part-of-decision {
+            font-size: 48px;
+            line-height: 66px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        /* Vote Today */
+        .vote-today {
+            font-size: 80px;
+            line-height: 100px;
+            color: #015FC7;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons container */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .button {
+            width: 200px;
+            height: 59px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .register-button {
+            background-color: #0160C8;
+            color: #EBECED;
+        }
+
+        .read-more-button {
+            background-color: #004EA4;
+            color: #FFFFFF;
+        }
+
+        /* About and Contact */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            font-size: 25px;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .part-of-decision {
+                font-size: 36px;
+            }
+
+            .vote-today {
+                font-size: 60px;
+            }
+
+            .button {
+                width: 150px;
+                height: 50px;
+                font-size: 18px;
+            }
+
+            .nav-link {
+                font-size: 20px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="header-content">
+    <div class="part-of-decision">Be a part of the decision</div>
+    <div class="vote-today">Vote Today</div>
+    <div class="buttons">
+        <!-- Link to the registration page -->
+        <a href="{{ url_for('registration') }}" class="button register-button">REGISTER</a>
+        <a href="{{ url_for('about') }}" class="button register-button">READ MORE</a>
+        
+    </div>
+    <div class="nav-links">
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+    </div>
+</div>
+{% endblock %}
+    

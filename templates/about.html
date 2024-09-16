@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{%block head%}
+    <title>About Us</title>
+    <style>
+
+    body {
+            font-family: 'DM Serif Display', serif;
+            background-color: #001124;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        /* Page Container */
+        .page-container {
+            position: relative;
+            width: 1440px;
+            height: 1024px;
+            background: #001124;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* About Title and Description Container */
+        .about-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px; /* Reduced gap */
+        }
+
+        /* About Title */
+        .about-title {
+            font-family: 'DM Serif Display', serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 115px;
+            line-height: 158px;
+            color: #FFFFFF;
+            transform: rotate(-90deg);
+            white-space: nowrap;
+        }
+
+        /* Line */
+        .line-3 {
+            width: 500px;; /* Adjusted width */
+            height: 0px;
+            background: #FFFFFF;
+            border: 7px solid #FFFFFF;
+            transform: rotate(-90deg);
+            margin-right: 20px; /* Margin to separate from the description */
+        }
+
+        /* About Description */
+        .about-description {
+            font-family: 'DM Serif Display', serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 55px;
+            text-align: justify;
+            color: #FFFFFF;
+            max-width: 900px; /* Adjusted width */
+        }
+    </style>
+{%endblock%}
+{%block body%}
+    <div class="page-container">
+        <div class="about-content">
+            <div class="about-title">About</div>
+            <div class="line-3"></div>
+            <div class="about-description">
+                An online voting system that will replace the old ballot system or paper system. Over time we have utilized the required technology in every sector to improve efficiency and save extra resources. But the voting system is still very expensive and requires a bigger workforce. The system is slower and still not completely tamper-proof. We bring a system that is safe, reliable, and solves modern issues like higher reachability of the booth, crowd-free voting, inexpensive, faster results, and others.
+            </div>
+        </div>
+    </div>
+{%endblock%}

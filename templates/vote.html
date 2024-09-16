@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block head%}
+<title>Voting Panel</title>
+    <style>
+        /* Voting Panel */
+        body {
+            font-family: 'DM Serif Display', serif;
+            background: #001124;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center; /* Center content horizontally */
+        }
+        
+        .voting-panel {
+            position: relative;
+            width: 1440px;
+            height: auto;
+            background: #001124;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Voting Panel Title */
+        .voting-panel-title {
+            font-family: 'DM Serif Display', serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 55px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        /* Contestant Section */
+        .contestant {
+            width: 1156px;
+            height: 122px;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .contestant-name {
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 40px;
+            color: #000000;
+            flex: 1;
+            text-align: left;
+        }
+
+        .contestant-party {
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 40px;
+            color: #000000;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Party Details */
+        .party-details {
+            display: none;
+            font-family: 'Tienne', sans-serif;
+            font-size: 20px;
+            color: #FFFFFF;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        /* Radio Buttons */
+        .contestant input[type="radio"] {
+            margin-right: 20px;
+        }
+
+        /* Submit Vote */
+        .submit-vote {
+            width: 314px;
+            height: 61px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .rectangle-39 {
+            width: 314px;
+            height: 61px;
+            background: #015FC7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .submit-text {
+            font-family: 'Tienne', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 40px;
+            color: #FFFFFF;
+            text-decoration: none; /* Removes underline */
+        }
+
+        /* Remove underline from link */
+        .submit-vote a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+
+{% endblock%}
+{% block body %}
+<div class="voting-panel">
+    <!-- Voting Panel Title -->
+    <div class="voting-panel-title">Voting Panel</div>
+    
+    <form action="{{ url_for('vote') }}" method="POST">
+        <h1>Select a candidate to vote:</h1>
+        
+        <!-- Dynamically rendering candidates using Flask -->
+        {% for candidate in candidates %}
+            <div class="contestant">
+                <!-- Radio Button for Candidate -->
+                <input type="radio" name="candidate" value="{{ candidate['name'] }}" id="{{ candidate['name'] }}-radio" required>
+                
+                <!-- Candidate's Name and Details -->
+                <label for="{{ candidate['name'] }}-radio" class="contestant-name">{{ candidate['name'] }}</label>
+                <div class="contestant-party">{{ candidate['details'] }}</div>
+            </div>
+            
+            <!-- Displaying Candidate's Party Details Dynamically -->
+            <div id="{{ candidate['name'] }}-details" class="party-details">
+                {{ candidate['details'] }}
+            </div>
+        
+            <br>
+        {% endfor %}
+        
+        <!-- Submit Vote Button -->
+        <div class="submit-vote">
+            <div class="rectangle-39">
+                <button type="submit" class="submit-text">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
