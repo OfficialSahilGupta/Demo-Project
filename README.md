@@ -41,7 +41,9 @@ project-root/
 └── requirements.txt               # Lists Python dependencies (e.g., Flask, Jinja2, etc.)
 ```
 
-You can link your application to own firebase project by generating your config file, add this config file to config/ directory and rename file to online voting system
+You can link your application to own firebase project by generating your config file, add this config file to config/ directory and rename file to online voting system.
+
+![how to create firebase project](https://firebase.google.com/docs/functions/get-started?gen=2nd)
 
 ## Firestore database structure
 Collections and Documents
