@@ -1,16 +1,14 @@
-## source-code
-
-# This is a online online-voting-system
+## This is a online-voting-system application, we are using html, css, javascript, flask and firestore database. 
 
 ## Prerequisites 
-above python 3.11.x
+above python 3.11.x installed to laptops
 
 ## Outline of folder
+```
 project-root/
 │
 ├── config/                        # Configuration files for the online voting system
 │   ├── online-voting-system.json  # Main configuration file (e.g., database, API keys, settings)
-│   └── online-voting-system (2).json  # Possibly a backup or alternate configuration
 │
 ├── env/                           # Virtual environment for Python (contains installed packages)
 │   └── ...                        # (No specific files shown, but this is where virtual environment files are)
@@ -41,41 +39,44 @@ project-root/
 ├── app.py                         # Main Flask application file, defines routes, initializes the app
 │
 └── requirements.txt               # Lists Python dependencies (e.g., Flask, Jinja2, etc.)
+```
 
-## Outline for firestore database
-## Firestore Database Structure
+You can link your application to own firebase project by generating your config file, add this config file to config/ directory and rename file to online voting system
 
-### Collections and Documents
+## Firestore database structure
+Collections and Documents
 
-#### 1. `candidates` Collection
-This collection holds data related to each candidate in the election.
+1. `candidates` Collection
+- Purpose: Holds data related to each candidate in the election.
+- Document ID: Auto-generated unique ID for each candidate (e.g., `1`, `2`, `3`, etc.).
+- Fields:
+  - `details`: (String) A description of the candidate 
+  - `image-link`: (String) A link to the candidate's profile picture or icon 
+  - `name`: (String) The candidate's name
+  - 
 
-- **Document ID**: Auto-generated unique ID for each candidate (e.g., `1`, `2`, `3`, etc.).
-- **Fields**:
-  - `details`: (String) A description of the candidate (e.g., "He is a BTech grad from ...").
-  - `image-link`: (String) A link to the candidate's profile picture or icon (e.g., `"https://www.flaticon.com/free-icon/alpha_13110717"`).
-  - `name`: (String) The candidate's name (e.g., `"Alpha"`).
+2. `users` Collection
+- Purpose: Represents registered users in the system.
+- Document ID: Auto-generated unique ID for each user.
+- Fields:
+  - `aadhar_number`: (String) The user's Aadhar number.
+  - `address`: (String) The user's address.
+  - `dob`: (Timestamp) The user's date of birth.
+  - `email`: (String) The user's email address.
+  - `mobile`: (String) The user's mobile number.
+  - `name`: (String) The user's name.
+  - `parent_name`: (String) The name of the user's parent or guardian.
+  - `password`: (String) The user's password (stored securely).
+  - `photo_url`: (String) A URL to the user's profile photo.
 
-#### 2. `users` Collection
-Each document in this collection represents a registered user in the system.
-
-- **Document ID**: Auto-generated unique ID for each user.
-- **Fields** (Assumed, not visible in the image):
-  - Likely includes `username`, `email`, `role`, `createdAt`, etc., depending on your app's requirements.
-
-#### 3. `vote-bank` Collection
-This collection likely holds data related to voting transactions or records, such as votes cast by users for specific candidates.
-
-- **Document ID**: Auto-generated unique ID for each voting record.
-- **Fields** (Assumed, not visible in the image):
-  - Could include references to `candidateId`, `userId`, `timestamp`, and other relevant fields.
-
----
-
-### Example Structure in Firestore:
-
-## This application uses Flask to communicate with firestore database  
-# Setting Up the Virtual Environment
+3. `vote-bank` Collection
+- Purpose: Holds data related to voting transactions or records.
+- Document ID: Auto-generated unique ID for each voting record.
+- Fields:
+  - `candidate`: (String) Reference to the `candidates` collection, indicating the candidate who received the vote.
+  - `votes`: (Number) The number of votes received by the candidate.
+  
+# Setting Up the Virtual Environment to start application
 Follow these steps to create and activate a virtual environment using **virtualenv**.
 
 # 1. Change terminal to working directory
